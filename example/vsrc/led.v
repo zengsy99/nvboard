@@ -14,6 +14,8 @@ module led(
       count <= (count >= 5000000 ? 32'b0 : count + 1);
     end
   end
+  wire led_2;
+  assign led_2 = sw[0] ^ sw[1] ^ sw[0];
 
-  assign ledr = {led[7:5], led[4:0] ^ btn, sw};
+  assign ledr = {led[7:5], led[4:0] ^ btn, sw[7:3],led_2, sw[1:0]};
 endmodule
